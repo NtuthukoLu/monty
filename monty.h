@@ -33,7 +33,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 void (*getFunction(stack_t **stack, int l, char *code))(stack_t **, unsigned int);
-void err(void);
+void error(void);
 void pushOp(stack_t **stack, unsigned int line_number, char *pushNum);
 void freeStack(stack_t **stack);
 void push(stack_t **stack, unsigned int line_number);

@@ -11,7 +11,7 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: failed\n");
 		freeStack(stack);
-		err();
+		error();
 	}
 
 	(void)line_number;

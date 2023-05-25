@@ -1,4 +1,5 @@
 #include "monty.h"
+FILE *file = NULL;
 /*
  * main - starting point for monty bytecode interpreter
  * @argc: argument count pass
@@ -18,7 +19,7 @@ int main(int argc, char **argv)
 	file = fopen(argv[1], "r");
 	if (!file)
 		fprintf(stderr, "Error: Can't open the file %s\n", argv[1]), exit(EXIT_FAILURE);
-	for (; getline(&buffer, &bufsize, file) != EOF; line_number++)
+	while (getline(&buffer, &bufsize, file) != EOF)
 	{
 		token = strtok((buffer), " \t\n");
 		if (!token)
@@ -29,14 +30,14 @@ int main(int argc, char **argv)
 		strcpy(op, token);
 		f = getFunction(&stack, line_number, op);
 		if (!f)
-			fprintf(stderr, "Error: failed\n"), err();
+			fprintf(stderr, "Error: failed\n"), error();
 		if (strcmp(op, "push") == 0)
 		{
 			token = strtok(NULL, " \t\n");
 			if (!token)
 			{
 				free(buffer), buffer = NULL, freeStack(&stack);
-				fprintf(stderr, "L%d: usage: push integer\n", line_number), err();
+				fprintf(stderr, "L%d: usage: push integer\n", line_number), error();
 			}
 			strcpy(pushNum, token);
 		}
@@ -44,8 +45,8 @@ int main(int argc, char **argv)
 		f(&stack, line_number);
 		if (strcmp(op, "push") == 0)
 			pushOp(&stack, line_number, pushNum);
+		line_number++;
 	}
 	free(buffer), fclose(file), freeStack(&stack);
 	return (EXIT_SUCCESS);
 }
-
