@@ -10,7 +10,7 @@ void push(stack_t **stack, unsigned int line_number)
 	if (newN == NULL)
 	{
 		fprintf(stderr, "Error: failed\n");
-		freee_stack(stack);
+		free_stack(stack);
 		err();
 	}
 
@@ -19,7 +19,7 @@ void push(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = newN;
 
 	newN->prev = NULL;
-	newN->next *stack;
+	newN->next = *stack;
 	newN->n = 0;
 	*stack = newN;
 
@@ -32,14 +32,14 @@ void push(stack_t **stack, unsigned int line_number)
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
-	*temp = (*stack)->next;
+	temp = *stack;
 	
 	do 
 	{
 		printf("%d\n", temp->n);
 		temp = temp->next;
 	}
-	while (temp)
+	while (temp);
 
 	(void)line_number;
 }
