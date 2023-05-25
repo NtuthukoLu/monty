@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 		strcpy(op, token);
-		f = get_func(&stack, line_number, op);
+		f = getFunction(&stack, line_number, op);
 		if (!f)
 			fprintf(stderr, "Error: failed\n"), err();
 		if (strcmp(op, "push") == 0)
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 			token = strtok(NULL, " \t\n");
 			if (!token)
 			{
-				free(buffer), buffer = NULL, free_stack(&stack);
+				free(buffer), buffer = NULL, freeStack(&stack);
 				fprintf(stderr, "L%d: usage: push integer\n", line_number), err();
 			}
 			strcpy(pushNum, token);
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 		if (strcmp(op, "push") == 0)
 			pushOp(&stack, line_number, pushNum);
 	}
-	free(buffer), fclose(file), free_stack(&stack);
+	free(buffer), fclose(file), freeStack(&stack);
 	return (EXIT_SUCCESS);
 }
 

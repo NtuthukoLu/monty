@@ -32,10 +32,10 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-void (*get_func(stack_t **stack, int l, char *code))(stack_t **, unsigned int);
+void (*getFunction(stack_t **stack, int l, char *code))(stack_t **, unsigned int);
 void err(void);
 void pushOp(stack_t **stack, unsigned int line_number, char *pushNum);
-void free_stack(stack_t **stack);
+void freeStack(stack_t **stack);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);

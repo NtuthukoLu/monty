@@ -10,7 +10,7 @@ void push(stack_t **stack, unsigned int line_number)
 	if (newN == NULL)
 	{
 		fprintf(stderr, "Error: failed\n");
-		free_stack(stack);
+		freeStack(stack);
 		err();
 	}
 
@@ -42,4 +42,15 @@ void pall(stack_t **stack, unsigned int line_number)
 	while (temp);
 
 	(void)line_number;
+}
+void pint(stack_t **, unsigned int line_number)
+{
+	if ((*stack) == NULL)
+	{
+		fprintf(stderr, "L%d: can not pint, empty stack\n",line_number);
+		fclose(file);
+		freeStack(stack);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
 }
